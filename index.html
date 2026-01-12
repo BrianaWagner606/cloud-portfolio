@@ -93,7 +93,22 @@
 </div>
         
         
+        <p>Total Visitors: <span id="counter">Loading...</span></p>
         <p><i>Powered by AWS & Automated via CI/CD</i></p>
     </div>
-</body>
-</html>
+        <script>
+            async function updateCounter() {
+                try {
+                    let response = await fetch("https://45rteya1fc.execute-api.us-east-1.amazonaws.com/prod/count");
+                    if (!response.ok) throw new Error('Network response was not ok');
+                    let data = await response.json();
+                    document.getElementById("counter").textContent = data.count;
+                } catch (e) {
+                    document.getElementById("counter").textContent = 'Error';
+                    console.error('Failed to load counter:', e);
+                }
+            }
+            updateCounter();
+        </script>
+    </body>
+    </html>
