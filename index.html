@@ -2,25 +2,46 @@
 <html>
 <head>
     <title>My Cloud Portfolio</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
-        body { 
-            background-color: #1a1a2e; 
-            color: white; 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            height: 100vh; 
-            margin: 0; 
-        }
-        .container { text-align: center; border: 2px solid #0f3460; padding: 50px; border-radius: 15px; }
-        h1 { color: #e94560; }
+    .skills-container {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        flex-wrap: wrap;
+        margin-top: 20px;
+    }
+    .skill-badge {
+        background: #0f3460;
+        padding: 10px 20px;
+        border-radius: 20px;
+        border: 1px solid #e94560;
+        font-size: 0.9rem;
+        font-weight: bold;
+    }
+    .container {
+        max-width: 900px;
+        margin: 60px auto;
+        text-align: center;
+        font-family: Arial, sans-serif;
+        color: #222;
+    }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Projects</h1>
         <p>My Cloud Portfolio is currently under construction.</p>
+        <div class="skills-container">
+    <div class="skill-badge">AWS S3</div>
+    <div class="skill-badge">AWS CodePipeline</div>
+    <div class="skill-badge">GitHub Automation</div>
+    <div class="skill-badge">CI/CD Pipelines</div>
+    <div class="skill-badge">Static Web Hosting</div>
+</div>
+        
+        
         <p><i>Powered by AWS & Automated via CI/CD</i></p>
     </div>
 </body>
