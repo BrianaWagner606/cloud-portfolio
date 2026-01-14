@@ -83,7 +83,7 @@
     h1 { color: #0C7ECF; margin-top: 0; }
 
     .skill-badge {
-            .skill-tag {
+            .skill-card {
                 background-color: #007bff;
                 color: white;
                 padding: 10px 20px;
@@ -185,8 +185,8 @@
                                 // 4. Create a beautiful tag for every skill (CSP-safe)
                                 skills.forEach(skill => {
                                     // 1. Create the main 'pill' or 'tag' div
-                                    const skillTag = document.createElement('div');
-                                    skillTag.className = 'skill-tag'; // This links it to your CSS styles!
+                                      const skillTag = document.createElement('div');
+                                      skillTag.className = 'skill-card'; // This links it to your CSS styles!
 
                                     // 2. Add the skill name
                                     const nameSpan = document.createElement('span');
