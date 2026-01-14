@@ -172,19 +172,19 @@
                 // 3. Find the container we made in Step 1
                 const container = document.getElementById('skills-container');
 
-                                // 4. Create an element for each skill (CSP-safe)
+                                // 4. Create an element for each skill (CSP-safe, new version)
                                 skills.forEach(skill => {
                                     const skillDiv = document.createElement('div');
-                                    skillDiv.className = 'skill-tag'; // Matches your CSS class
+                                    skillDiv.className = 'skill-item'; // or 'skill-tag' based on your CSS
 
-                                    // Building the text safely to avoid CSP 'eval' errors
-                                    const nameLabel = document.createElement('strong');
-                                    nameLabel.textContent = skill.name;
-                                    const levelLabel = document.createElement('span');
-                                    levelLabel.textContent = ` (${skill.proficiency}%)`;
+                                    const skillName = document.createElement('strong');
+                                    skillName.textContent = skill.name;
 
-                                    skillDiv.appendChild(nameLabel);
-                                    skillDiv.appendChild(levelLabel);
+                                    const skillProficiency = document.createElement('span');
+                                    skillProficiency.textContent = `: ${skill.proficiency}%`;
+
+                                    skillDiv.appendChild(skillName);
+                                    skillDiv.appendChild(skillProficiency);
                                     container.appendChild(skillDiv);
                                 });
             } catch (error) {
