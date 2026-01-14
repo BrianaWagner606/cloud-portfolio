@@ -157,13 +157,13 @@
     </html>
     <script>
         // 1. Your S3 Object URL (Find this in your Data Bucket properties)
-        const dataUrl = 'https://brianawagner-portfolio-data-2026.s3.us-east-1.amazonaws.com/skills.json';
+        const skillsDataUrl = 'https://brianawagner-portfolio-data-2026.s3.us-east-1.amazonaws.com/skills.json';
 
         async function updateSkills() {
             const spinner = document.getElementById('loading-spinner');
             try {
                 // 2. Fetch the data
-                const response = await fetch(dataUrl);
+                const response = await fetch(skillsDataUrl);
                 const skills = await response.json(); //
 
                 // 1. Hide the spinner now that we have data
