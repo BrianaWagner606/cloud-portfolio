@@ -105,5 +105,38 @@
             }
             updateCounter();
         </script>
+        <script>
+            // 1. Point to your new data bucket file
+            const dataUrl = 'https://brianawagner-portfolio-data-2026.s3.amazonaws.com/skills.json';
+
+            async function loadSkills() {
+                try {
+                    // 2. Fetch the data from S3
+                    const response = await fetch(dataUrl);
+                    if (!response.ok) throw new Error('Failed to fetch skills');
+                    const skills = await response.json();
+
+                    // 3. Find our "Empty Box"
+                    const container = document.getElementById('skills-list');
+                    if (!container) return;
+
+                    // 4. Loop through each skill and create the HTML
+                    skills.forEach(skill => {
+                        const skillElement = document.createElement('div');
+                        skillElement.className = 'skill-tag';
+                        skillElement.innerHTML = `
+                            <strong>${skill.name}</strong>
+                            <span>(${skill.proficiency}%)</span>
+                        `;
+                        container.appendChild(skillElement);
+                    });
+                } catch (error) {
+                    console.error('Error loading skills:', error);
+                }
+            }
+
+            // Run the function!
+            loadSkills();
+        </script>
     </body>
     </html>
