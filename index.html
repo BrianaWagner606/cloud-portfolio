@@ -140,3 +140,33 @@
         </script>
     </body>
     </html>
+    <script>
+        // 1. Your S3 Object URL (Find this in your Data Bucket properties)
+        const dataUrl = 'https://brianawagner-portfolio-data-2026.s3.amazonaws.com/skills.json';
+
+        async function updateSkills() {
+            try {
+                // 2. Fetch the data
+                const response = await fetch(dataUrl);
+                const skills = await response.json(); //
+
+                // 3. Find the container we made in Step 1
+                const container = document.getElementById('skills-container');
+
+                // 4. Create an element for each skill
+                skills.forEach(skill => {
+                    const skillDiv = document.createElement('div');
+                    skillDiv.className = 'skill-item';
+                    skillDiv.innerHTML = `
+                        <strong>${skill.name}</strong>: ${skill.proficiency}%
+                    `;
+                    container.appendChild(skillDiv);
+                });
+            } catch (error) {
+                console.error("Error fetching skills:", error);
+            }
+        }
+
+        // Start the process!
+        updateSkills();
+    </script>
