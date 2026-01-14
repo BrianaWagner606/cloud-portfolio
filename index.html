@@ -83,15 +83,6 @@
     h1 { color: #0C7ECF; margin-top: 0; }
 
     .skill-badge {
-            .skill-card {
-                background-color: #007bff;
-                color: white;
-                padding: 10px 20px;
-                border-radius: 20px;
-                margin: 5px;
-                display: inline-block;
-                font-weight: bold;
-            }
         background: #0C7ECF;
         color: white;
         padding: 8px 16px;
@@ -147,11 +138,8 @@
                     // 4. Loop through each skill and create the HTML
                     skills.forEach(skill => {
                         const skillElement = document.createElement('div');
-                        skillElement.className = 'skill-tag';
-                        skillElement.innerHTML = `
-                            <strong>${skill.name}</strong>
-                            <span>(${skill.proficiency}%)</span>
-                        `;
+                        skillElement.className = 'skill-badge';
+                        skillElement.textContent = skill.name;
                         container.appendChild(skillElement);
                     });
                 } catch (error) {
@@ -184,11 +172,10 @@
 
                                 // 4. Create a beautiful tag for every skill (CSP-safe)
                                 skills.forEach(skill => {
-                                    // 1. Create the main 'pill' or 'tag' div
-                                      const skillDiv = document.createElement('div');
-                                      skillDiv.className = 'skill-tag';
-                                      skillDiv.textContent = `${skill.name}`;
-                                      container.appendChild(skillDiv);
+                                    const skillDiv = document.createElement('div');
+                                    skillDiv.className = 'skill-badge';
+                                    skillDiv.textContent = skill.name;
+                                    container.appendChild(skillDiv);
                                 });
             } catch (error) {
                 // If there is an error, we should still hide the spinner
