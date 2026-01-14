@@ -5,6 +5,20 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
+            .spinner {
+                border: 4px solid rgba(0, 0, 0, 0.1);
+                border-top: 4px solid #3498db;
+                border-radius: 50%;
+                width: 40px;
+                height: 40px;
+                animation: spin 1s linear infinite;
+                margin: 20px auto;
+            }
+
+            @keyframes spin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+            }
     body {
         margin: 0;
         padding: 0;
@@ -85,7 +99,8 @@
         <h1>Projects</h1>
         <p>My Cloud Portfolio is currently under construction.</p>
         <div id="skills-container" class="skills-grid">
-        </div>
+                    <div id="loading-spinner" class="spinner"></div>
+                </div>
         
         
         <p>Total Visitors: <span id="counter">Loading...</span></p>
@@ -142,13 +157,17 @@
     </html>
     <script>
         // 1. Your S3 Object URL (Find this in your Data Bucket properties)
-        const dataUrl = 'https://brianawagner-portfolio-data-2026.s3.amazonaws.com/skills.json';
+        const dataUrl = 'https://brianawagner-portfolio-data-2026.s3.us-east-1.amazonaws.com/skills.json';
 
         async function updateSkills() {
+            const spinner = document.getElementById('loading-spinner');
             try {
                 // 2. Fetch the data
                 const response = await fetch(dataUrl);
                 const skills = await response.json(); //
+
+                // 1. Hide the spinner now that we have data
+                if (spinner) spinner.style.display = 'none';
 
                 // 3. Find the container we made in Step 1
                 const container = document.getElementById('skills-container');
@@ -163,6 +182,8 @@
                     container.appendChild(skillDiv);
                 });
             } catch (error) {
+                // If there is an error, we should still hide the spinner
+                if (spinner) spinner.style.display = 'none';
                 console.error("Error fetching skills:", error);
             }
         }
