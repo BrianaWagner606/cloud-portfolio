@@ -185,23 +185,10 @@
                                 // 4. Create a beautiful tag for every skill (CSP-safe)
                                 skills.forEach(skill => {
                                     // 1. Create the main 'pill' or 'tag' div
-                                      const skillTag = document.createElement('div');
-                                      skillTag.className = 'skill-card'; // This links it to your CSS styles!
-
-                                    // 2. Add the skill name
-                                    const nameSpan = document.createElement('span');
-                                    nameSpan.textContent = skill.name;
-                  
-                                    // 3. Add the percentage (optional, looks cleaner in a smaller font)
-                                    const percentSpan = document.createElement('small');
-                                    percentSpan.textContent = ` ${skill.proficiency}%`;
-                                    percentSpan.style.marginLeft = "8px";
-                                    percentSpan.style.opacity = "0.8";
-
-                                    // 4. Put it all together and add to the page
-                                    skillTag.appendChild(nameSpan);
-                                    skillTag.appendChild(percentSpan);
-                                    container.appendChild(skillTag);
+                                      const skillDiv = document.createElement('div');
+                                      skillDiv.className = 'skill-tag';
+                                      skillDiv.textContent = `${skill.name}`;
+                                      container.appendChild(skillDiv);
                                 });
             } catch (error) {
                 // If there is an error, we should still hide the spinner
