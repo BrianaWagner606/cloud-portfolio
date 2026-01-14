@@ -83,6 +83,15 @@
     h1 { color: #0C7ECF; margin-top: 0; }
 
     .skill-badge {
+            .skill-tag {
+                background-color: #007bff;
+                color: white;
+                padding: 10px 20px;
+                border-radius: 20px;
+                margin: 5px;
+                display: inline-block;
+                font-weight: bold;
+            }
         background: #0C7ECF;
         color: white;
         padding: 8px 16px;
@@ -173,20 +182,26 @@
                 // 3. Find the container we made in Step 1
                 const container = document.getElementById('skills-container');
 
-                                // 4. Create an element for each skill (CSP-safe, new version)
+                                // 4. Create a beautiful tag for every skill (CSP-safe)
                                 skills.forEach(skill => {
-                                    const skillDiv = document.createElement('div');
-                                    skillDiv.className = 'skill-item'; // or 'skill-tag' based on your CSS
+                                    // 1. Create the main 'pill' or 'tag' div
+                                    const skillTag = document.createElement('div');
+                                    skillTag.className = 'skill-tag'; // This links it to your CSS styles!
 
-                                    const skillName = document.createElement('strong');
-                                    skillName.textContent = skill.name;
+                                    // 2. Add the skill name
+                                    const nameSpan = document.createElement('span');
+                                    nameSpan.textContent = skill.name;
+                  
+                                    // 3. Add the percentage (optional, looks cleaner in a smaller font)
+                                    const percentSpan = document.createElement('small');
+                                    percentSpan.textContent = ` ${skill.proficiency}%`;
+                                    percentSpan.style.marginLeft = "8px";
+                                    percentSpan.style.opacity = "0.8";
 
-                                    const skillProficiency = document.createElement('span');
-                                    skillProficiency.textContent = `: ${skill.proficiency}%`;
-
-                                    skillDiv.appendChild(skillName);
-                                    skillDiv.appendChild(skillProficiency);
-                                    container.appendChild(skillDiv);
+                                    // 4. Put it all together and add to the page
+                                    skillTag.appendChild(nameSpan);
+                                    skillTag.appendChild(percentSpan);
+                                    container.appendChild(skillTag);
                                 });
             } catch (error) {
                 // If there is an error, we should still hide the spinner
